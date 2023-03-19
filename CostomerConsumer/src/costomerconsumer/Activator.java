@@ -6,6 +6,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
+import foodandbeveragepublisher.IFoodandBeverageService;
 import transportpublisher.ITransportService;
 
 public class Activator implements BundleActivator {
@@ -16,7 +17,7 @@ public class Activator implements BundleActivator {
 	
 	// This is Food Service
 	ServiceReference FoodServiceReference;
-	private ITransportService food;
+	private IFoodandBeverageService food;
 	
 	
 
@@ -27,8 +28,8 @@ public class Activator implements BundleActivator {
 //		@SuppressWarnings("unchecked")
 		this.transport = (ITransportService) context.getService(TransportServiceReference);
 		
-		FoodServiceReference = context.getServiceReference(ITransportService.class.getName());
-		this.food = (ITransportService) context.getService(FoodServiceReference);
+		FoodServiceReference = context.getServiceReference(IFoodandBeverageService.class.getName());
+		this.food = (IFoodandBeverageService) context.getService(FoodServiceReference);
 
 		displayServices();
 	}
@@ -124,7 +125,7 @@ public class Activator implements BundleActivator {
 	}
 	
 	// This is Food Service
-	public void foodService(ITransportService food) {
+	public void foodService(IFoodandBeverageService food) {
 		// TODO : Implement Food Section
 		System.out.println("\n\n");
 		System.out.println("--------- 🍔 Food Service Section -----------\n");
