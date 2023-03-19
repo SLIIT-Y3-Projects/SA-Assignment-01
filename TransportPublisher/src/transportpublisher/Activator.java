@@ -10,8 +10,8 @@ public class Activator implements BundleActivator {
 
 	public void start(BundleContext context) throws Exception {
 		System.out.println("Transport Publisher service started ✅");
-		ITransportService event = new TransportService();
-		serviceRegistration = context.registerService(ITransportService.class.getName(), event, null);
+		ITransportService transport = new TransportService();
+		serviceRegistration = context.registerService(ITransportService.class.getName(), transport, null);
 	}
 
 	public void stop(BundleContext context) throws Exception {
