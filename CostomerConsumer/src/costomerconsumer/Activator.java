@@ -6,6 +6,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
+import decorationpublisher.DecorationInfoService;
 import foodandbeveragepublisher.IFoodandBeverageService;
 import soundpackpublisher.SoundPackService;
 import transportpublisher.ITransportService;
@@ -23,6 +24,10 @@ public class Activator implements BundleActivator {
 	// This is Sound Service
 	ServiceReference SoundServiceReference;
 	private SoundPackService sound;
+	
+	// This is Decoration Service
+	ServiceReference DecorationServiceReference;
+	private DecorationInfoService decoration;
 
 	public void start(BundleContext context) throws Exception {
 		System.out.println("Start Subscriber Service");
@@ -36,6 +41,9 @@ public class Activator implements BundleActivator {
 		
 		SoundServiceReference = context.getServiceReference(SoundPackService.class.getName());
 		this.sound = (SoundPackService) context.getService(SoundServiceReference);
+		
+		DecorationServiceReference = context.getServiceReference(DecorationInfoService.class.getName());
+		this.decoration = (DecorationInfoService) context.getService(DecorationServiceReference);
 
 		displayServices();
 	}
@@ -69,7 +77,7 @@ public class Activator implements BundleActivator {
 			soundService(sound);
 			break;
 		case 4:
-
+			decorationService(decoration);
 			break;
 		case 5:
 			break;
@@ -190,6 +198,37 @@ public class Activator implements BundleActivator {
 				soundService(sound);
 			}
 		}
+		
+		// This is Decoration Service
+				public void decorationService(DecorationInfoService decoration) {
+					int option;
+
+					Scanner scan = new Scanner(System.in);
+
+					System.out.println("\n\n");
+					System.out.println("-------------- 🎉 Decoration Service Section ---------------\n");
+					System.out.println("\t[1] - View all Decoration Packages");
+					System.out.println("\t[2] - Exit");
+					System.out.println("\n--------------------------------------------------");
+					System.out.print("\nChoose an option : ");
+					option = Integer.parseInt(scan.nextLine().trim());
+
+					switch (option) {
+					case 1:
+						decoration.getAllDecorationPackages();
+						decorationService(decoration);
+						break;
+					case 2:
+						displayServices();
+						break;
+
+					default:
+						System.out.println("\n--------------------------------------------------");
+						System.out.println("Incorrect Input. Try Again...");
+						System.out.println("--------------------------------------------------");
+						decorationService(decoration);
+					}
+				}
 
 	public void stop(BundleContext context) throws Exception {
 		System.out.println("Good Bye!");
