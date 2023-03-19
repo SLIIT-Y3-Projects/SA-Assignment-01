@@ -15,15 +15,15 @@ public class TransportService implements ITransportService {
 
 	private Connection connection = null;
 	private Statement statement = null;
-	private IEventDb vehicleRentalDatabase;
+	private IEventDb eventDatabase;
 	private ResultSet resultSet;
 
 	Scanner scan = new Scanner(System.in);
 
 	public TransportService() {
 		super();
-		vehicleRentalDatabase = (IEventDb) new EventDb();
-		connection = vehicleRentalDatabase.connection();
+		eventDatabase = (IEventDb) new EventDb();
+		connection = eventDatabase.connection();
 	}
 
 	@Override
