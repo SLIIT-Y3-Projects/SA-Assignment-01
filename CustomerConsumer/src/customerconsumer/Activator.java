@@ -1,4 +1,4 @@
-package costomerconsumer;
+package customerconsumer;
 
 import java.util.Scanner;
 
@@ -231,7 +231,7 @@ public class Activator implements BundleActivator {
 				}
 
 	public void stop(BundleContext context) throws Exception {
-		System.out.println("Good Bye!");
+		System.out.println("Customer Consumer Stopped 🗑️");
 		context.ungetService(TransportServiceReference);
 	}
 }
