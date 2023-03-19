@@ -7,6 +7,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 import foodandbeveragepublisher.IFoodandBeverageService;
+import soundpackpublisher.SoundPackService;
 import transportpublisher.ITransportService;
 
 public class Activator implements BundleActivator {
@@ -19,7 +20,9 @@ public class Activator implements BundleActivator {
 	ServiceReference FoodServiceReference;
 	private IFoodandBeverageService food;
 	
-	
+	// This is Sound Service
+	ServiceReference SoundServiceReference;
+	private SoundPackService sound;
 
 	public void start(BundleContext context) throws Exception {
 		System.out.println("Start Subscriber Service");
@@ -30,6 +33,9 @@ public class Activator implements BundleActivator {
 		
 		FoodServiceReference = context.getServiceReference(IFoodandBeverageService.class.getName());
 		this.food = (IFoodandBeverageService) context.getService(FoodServiceReference);
+		
+		SoundServiceReference = context.getServiceReference(SoundPackService.class.getName());
+		this.sound = (SoundPackService) context.getService(SoundServiceReference);
 
 		displayServices();
 	}
@@ -60,7 +66,7 @@ public class Activator implements BundleActivator {
 			foodService(food);
 			break;
 		case 3:
-
+			soundService(sound);
 			break;
 		case 4:
 
@@ -79,7 +85,6 @@ public class Activator implements BundleActivator {
 	// This is Transport Service
 	public void transportService(ITransportService transport) {
 		int option;
-		String subOption = "y";
 
 		Scanner scan = new Scanner(System.in);
 
@@ -127,7 +132,6 @@ public class Activator implements BundleActivator {
 	// This is Food Service
 	public void foodService(IFoodandBeverageService food) {
 		int option;
-		String subOption = "y";
 
 		Scanner scan = new Scanner(System.in);
 
@@ -155,6 +159,37 @@ public class Activator implements BundleActivator {
 			foodService(food);
 		}
 	}
+	
+	// This is Sound Service
+		public void soundService(SoundPackService sound) {
+			int option;
+
+			Scanner scan = new Scanner(System.in);
+
+			System.out.println("\n\n");
+			System.out.println("----------- 🎧 Sound Service Section 🎵 -----------\n");
+			System.out.println("\t[1] - Get all Sound Packs in the Database");
+			System.out.println("\t[2] - Exit");
+			System.out.println("\n--------------------------------------------------");
+			System.out.print("\nChoose an option : ");
+			option = Integer.parseInt(scan.nextLine().trim());
+
+			switch (option) {
+			case 1:
+				sound.getAllPackages();
+				soundService(sound);
+				break;
+			case 2:
+				displayServices();
+				break;
+
+			default:
+				System.out.println("\n--------------------------------------------------");
+				System.out.println("Incorrect Input. Try Again...");
+				System.out.println("--------------------------------------------------");
+				soundService(sound);
+			}
+		}
 
 	public void stop(BundleContext context) throws Exception {
 		System.out.println("Good Bye!");
