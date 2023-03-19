@@ -126,9 +126,34 @@ public class Activator implements BundleActivator {
 	
 	// This is Food Service
 	public void foodService(IFoodandBeverageService food) {
-		// TODO : Implement Food Section
+		int option;
+		String subOption = "y";
+
+		Scanner scan = new Scanner(System.in);
+
 		System.out.println("\n\n");
-		System.out.println("--------- 🍔 Food Service Section -----------\n");
+		System.out.println("---- 🍔 Food and Beverage Service Section 🍔 -----\n");
+		System.out.println("\t[1] - Get all Food and Beverage Packages in the Database");
+		System.out.println("\t[2] - Exit");
+		System.out.println("\n--------------------------------------------------");
+		System.out.print("\nChoose an option : ");
+		option = Integer.parseInt(scan.nextLine().trim());
+
+		switch (option) {
+		case 1:
+			food.getAllPackages();
+			foodService(food);
+			break;
+		case 2:
+			displayServices();
+			break;
+
+		default:
+			System.out.println("\n--------------------------------------------------");
+			System.out.println("Incorrect Input. Try Again...");
+			System.out.println("--------------------------------------------------");
+			foodService(food);
+		}
 	}
 
 	public void stop(BundleContext context) throws Exception {
