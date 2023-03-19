@@ -29,11 +29,13 @@ public class Activator implements BundleActivator {
 		
 		System.out.println("\n");
 		System.out.println("---------- 🍔 Food and Beverage Management Section 🍔 ----------\n");
-		System.out.println("[1]  - Add Food and Beverage Package to the Database");
-		System.out.println("[2]  - Get all Food and Beverage Packages in the Database");
-		System.out.println("[3]  - Get Food and Beverage Package By the Id ");
-		System.out.println("[4]  - Delete Food and Beverage Package by the Id");
+		System.out.println("[1]  - Add Food and Beverage Package to the Database :");
+		System.out.println("[2]  - Get all Food and Beverage Packages in the Database :");
+		System.out.println("[3]  - Get Food and Beverage Package By the Id : ");
+		System.out.println("[4]  - Delete Food and Beverage Package by the Id :");
 		System.out.println("[5]  - Get a custom Food and Beverage Quoation :");
+		System.out.println("[6]  - Exit from the Application :");
+
 		System.out.println("\n--------------------------------------------------------------");
 		
 		System.out.print("\n\nChoose an option :");
@@ -70,10 +72,15 @@ public class Activator implements BundleActivator {
 		case 5:
 			foodandbeverage.calculateBill();
 			displayPackages(foodandbeverage);
+			break;
+		case 6:
+			
+			break;
 		
 		default:
 			System.out.println("Incorrect Input. Try Again...");
 			displayPackages(foodandbeverage);
+			break;
 	}
 		
 		

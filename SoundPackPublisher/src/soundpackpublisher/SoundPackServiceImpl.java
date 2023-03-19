@@ -1,5 +1,7 @@
 package soundpackpublisher;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.*;
 //import java.util.ArrayList;
@@ -224,6 +226,32 @@ Scanner scan = new Scanner(System.in);
 		
 		System.out.println("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 		
+		try {
+			PrintWriter out = new PrintWriter("Quotation.txt");
+			
+			out.println("Quotation for the Sound Package");
+			out.println("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
+			
+			out.println("Package ID                 :" +packId);
+			out.println("Hrs Needed                 :" +hrs);
+			out.println("Price for the Sound Package:" +price);
+			out.println("No of Extra Hrs            :" +extraHrs);
+			out.println("Charge for extra Hrs       :" + extraHrsCharge);
+			out.println("Government Tax             :" + GovtTaxCharge);
+			out.println("Total Fee                  :" + TotalFee);
+			
+			out.println("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
+			
+			out.close(); 
+			
+			System.out.println("Quotation is been saved to a file...");
+			
+		
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

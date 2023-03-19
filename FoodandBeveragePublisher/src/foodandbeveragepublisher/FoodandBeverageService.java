@@ -1,12 +1,15 @@
 package foodandbeveragepublisher;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.Scanner;
 
+import eventdatabase.EventDb;
+import eventdatabase.IEventDb;
+
+import java.io.*;
+
 
 import java.util.ArrayList;
-
-import eventdatabase.IEventDb;
-import eventdatabase.EventDb;
 
 public class FoodandBeverageService implements IFoodandBeverageService {
 
@@ -169,12 +172,49 @@ public class FoodandBeverageService implements IFoodandBeverageService {
 		int totalCal = cal + service;
 		
 		System.out.println("\n-----------------------------------------");
+		System.out.printf("------Food and Beverage Quoation---------");
+		System.out.println("\n-----------------------------------------");
 		System.out.printf("%20s: %-25s\n", "Package Name", packageName);
 		System.out.printf("%20s: %-25s\n", "Per Person Price", price);
 		System.out.printf("%20s: %-25s\n", "Number of Person", numOfPerson);
 		System.out.printf("%20s: %-25s\n", "Service Charge(%)", serviceCharge);
+		System.out.print("\n\n");
+		System.out.print("\t\t -----------------");
+		System.out.print("\n");
 		System.out.printf("%20s: %-25s\n", "Total Price", +totalCal);
+		System.out.print("\t\t -----------------");
+		System.out.println("\n\n-----------------------------------------");
+		System.out.printf("--------- Thank You ---------");
 		System.out.println("\n-----------------------------------------");
+		
+		try {
+			
+			PrintWriter out =new PrintWriter("FoodQuotation.txt");
+			
+			out.println("\n-----------------------------------------");
+			out.printf("------Food and Beverage Quoation---------");
+			out.println("\n-----------------------------------------");
+			out.printf("%20s: %-25s\n", "Package Name", packageName);
+			out.printf("%20s: %-25s\n", "Per Person Price", price);
+			out.printf("%20s: %-25s\n", "Number of Person", numOfPerson);
+			out.printf("%20s: %-25s\n", "Service Charge(%)", serviceCharge);
+			out.print("\n\n");
+			out.print("\t\t -----------------");
+			out.print("\n");
+			out.printf("%20s: %-25s\n", "Total Price", +totalCal);
+			out.print("\t\t -----------------");
+			out.println("\n\n-----------------------------------------");
+			out.printf("--------- Thank You ---------");
+			out.println("\n-----------------------------------------");
+			
+			out.close();
+			System.out.println("Food Quotation file downloaded...");
+			
+			
+			
+		}catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	
 		
 		

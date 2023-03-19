@@ -9,7 +9,7 @@ public class Activator implements BundleActivator {
 	private ServiceRegistration serviceRegistration;
 
 	public void start(BundleContext context) throws Exception {
-		System.out.println("Food and Beverage service started");
+		System.out.println("Food and Beverage Publisher service started");
 		IFoodandBeverageService foodandbeverage = new FoodandBeverageService();
 		serviceRegistration = context.registerService(IFoodandBeverageService.class.getName(), foodandbeverage, null);
 		
