@@ -1,4 +1,4 @@
-package costomerconsumer;
+package customerconsumer;
 
 import java.util.Scanner;
 
